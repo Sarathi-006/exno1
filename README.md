@@ -64,15 +64,15 @@ df.to_csv("Cleaned_Data.csv", index=False)
 print("Cleaned data saved successfully.")
 ```
 # Output
-<img width="516" height="555" alt="Screenshot 2026-10-28 134127" src="https://github.com/user-attachments/assets/9484b390-51e6-4125-91d1-e685a002c02a" />
-<img width="485" height="557" alt="Screenshot 2026-10-28 134122" src="https://github.com/user-attachments/assets/fe4b4f26-e250-42ee-a7c5-1626b1807c6a" />
-<img width="497" height="552" alt="Screenshot 2026-10-28 134115" src="https://github.com/user-attachments/assets/1b2eb7e7-efda-4771-b01b-cd0ecfa0abc9" />
-<img width="528" height="552" alt="Screenshot 2026-10-28 134109" src="https://github.com/user-attachments/assets/b1fa14c2-dd9d-4327-a2a7-201de0706106" />
-<img width="247" height="172" alt="Screenshot 2026-10-28 134103" src="https://github.com/user-attachments/assets/ef4cb17a-a98c-44ef-b13a-505930266f05" />
-<img width="343" height="325" alt="Screenshot 2026-10-28 134058" src="https://github.com/user-attachments/assets/44382adb-22b7-491a-95bc-03712a431671" />
-<img width="603" height="831" alt="Screenshot 2026-10-28 134035" src="https://github.com/user-attachments/assets/e201e3fc-89ea-40d5-8d58-416fbdf9ebca" />
-<img width="611" height="657" alt="Screenshot 2026-10-28 134011" src="https://github.com/user-attachments/assets/a499c8f9-6be9-4e0a-b0c2-ad174eca02a9" />
 <img width="490" height="553" alt="Screenshot 2026-10-28 134134" src="https://github.com/user-attachments/assets/9b96a693-e38c-4809-871b-3b1d497d17c3" />
+<img width="611" height="657" alt="Screenshot 2026-10-28 134011" src="https://github.com/user-attachments/assets/a499c8f9-6be9-4e0a-b0c2-ad174eca02a9" />
+<img width="603" height="831" alt="Screenshot 2026-10-28 134035" src="https://github.com/user-attachments/assets/e201e3fc-89ea-40d5-8d58-416fbdf9ebca" />
+<img width="343" height="325" alt="Screenshot 2026-10-28 134058" src="https://github.com/user-attachments/assets/44382adb-22b7-491a-95bc-03712a431671" />
+<img width="247" height="172" alt="Screenshot 2026-10-28 134103" src="https://github.com/user-attachments/assets/ef4cb17a-a98c-44ef-b13a-505930266f05" />
+<img width="528" height="552" alt="Screenshot 2026-10-28 134109" src="https://github.com/user-attachments/assets/b1fa14c2-dd9d-4327-a2a7-201de0706106" />
+<img width="497" height="552" alt="Screenshot 2026-10-28 134115" src="https://github.com/user-attachments/assets/1b2eb7e7-efda-4771-b01b-cd0ecfa0abc9" />
+<img width="485" height="557" alt="Screenshot 2026-10-28 134122" src="https://github.com/user-attachments/assets/fe4b4f26-e250-42ee-a7c5-1626b1807c6a" />
+<img width="516" height="555" alt="Screenshot 2026-10-28 134127" src="https://github.com/user-attachments/assets/9484b390-51e6-4125-91d1-e685a002c02a" />
 
 
 ### Outlier Detection and Removal Using IQR
@@ -108,11 +108,11 @@ plt.title("Boxplot After IQR Outlier Removal")
 plt.show()
 ```
 # Output
-<img width="853" height="363" alt="Screenshot 2026-10-28 134445" src="https://github.com/user-attachments/assets/f00f4f9c-b953-4d29-91f9-d7cca8277b72" />
-<img width="588" height="556" alt="Screenshot 2026-10-28 134416" src="https://github.com/user-attachments/assets/ff6c3d41-4011-4a60-a3c3-21e7ce3b4d8b" />
-<img width="668" height="742" alt="Screenshot 2026-10-28 134409" src="https://github.com/user-attachments/assets/678b55e5-37a1-45c6-91bc-80f97048de57" />
-<img width="912" height="365" alt="Screenshot 2026-10-28 134403" src="https://github.com/user-attachments/assets/757f3954-f12f-4ab2-aa8d-c72aa267985e" />
 <img width="545" height="397" alt="Screenshot 2026-10-28 134331" src="https://github.com/user-attachments/assets/bad96181-9be0-4808-a105-f6c03a1ff700" />
+<img width="912" height="365" alt="Screenshot 2026-10-28 134403" src="https://github.com/user-attachments/assets/757f3954-f12f-4ab2-aa8d-c72aa267985e" />
+<img width="668" height="742" alt="Screenshot 2026-10-28 134409" src="https://github.com/user-attachments/assets/678b55e5-37a1-45c6-91bc-80f97048de57" />
+<img width="588" height="556" alt="Screenshot 2026-10-28 134416" src="https://github.com/user-attachments/assets/ff6c3d41-4011-4a60-a3c3-21e7ce3b4d8b" />
+<img width="853" height="363" alt="Screenshot 2026-10-28 134445" src="https://github.com/user-attachments/assets/f00f4f9c-b953-4d29-91f9-d7cca8277b72" />
 
 ### Outlier Detection and Removal Using Z-Score
 ```
@@ -145,8 +145,8 @@ plt.title("Boxplot After Z-Score Outlier Removal")
 plt.show()
 ```
 # Output
-<img width="817" height="362" alt="Screenshot 2026-10-28 134607" src="https://github.com/user-attachments/assets/0e83ba1b-6e91-4218-b225-2e818c087977" />
 <img width="448" height="447" alt="Screenshot 2026-10-28 134601" src="https://github.com/user-attachments/assets/d8da35d3-c7b9-443f-9065-50f6ecfa1357" />
+<img width="817" height="362" alt="Screenshot 2026-10-28 134607" src="https://github.com/user-attachments/assets/0e83ba1b-6e91-4218-b225-2e818c087977" />
 
 # Result
 Thus the data cleaning process on the given dataset is executed successfully.
