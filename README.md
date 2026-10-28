@@ -21,130 +21,74 @@ STEP 5: Remove outliers using IQR
 STEP 6: Use zscore of to remove outliers
 
 # Coding and Output
-### Data Cleaning Process Using Python
 ```
 import pandas as pd
+import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
+```
+```
+df = pd.read_csv("Data_set.csv")
 
-df = pd.read_csv("Data_set (1).csv")
-print(df)
-
-df.info()
-print(df.describe())
 print(df.head())
-print(df.shape)
-print(df.columns)
-
+print(df.info())
 print(df.isnull().sum())
 
-print(df.isnull().sum(axis=1))
+for col in df.select_dtypes(include="number").columns:
+    df[col] = df[col].fillna(df[col].median())
 
-df_drop = df.dropna()
-print(df_drop)
+for col in df.select_dtypes(include=["object", "string"]).columns:
+    if df[col].isnull().any() and not df[col].mode().empty:
+        df[col] = df[col].fillna(df[col].mode()[0])
 
-df_zero = df.fillna(0)
-print(df_zero)
-
-df_ffill = df.ffill()
-print(df_ffill)
-
-df_bfill = df.bfill()
-print(df_bfill)
-
-numeric_columns = df.select_dtypes(include="number").columns
-df_mean = df.copy()
-df_mean[numeric_columns] = df_mean[numeric_columns].fillna(
-    df_mean[numeric_columns].mean()
-)
-print(df_mean)
-
-df = df.dropna()
-print(df)
-
-df.to_csv("Cleaned_Data.csv", index=False)
-print("Cleaned data saved successfully.")
+print("\nAfter cleaning:\n", df.isnull().sum())
+df.to_csv("cleaned_Data_set.csv", index=False)
+print("Saved successfully!")
 ```
-# Output
-<img width="490" height="553" alt="Screenshot 2026-10-28 134134" src="https://github.com/user-attachments/assets/9b96a693-e38c-4809-871b-3b1d497d17c3" />
-<img width="611" height="657" alt="Screenshot 2026-10-28 134011" src="https://github.com/user-attachments/assets/a499c8f9-6be9-4e0a-b0c2-ad174eca02a9" />
-<img width="603" height="831" alt="Screenshot 2026-10-28 134035" src="https://github.com/user-attachments/assets/e201e3fc-89ea-40d5-8d58-416fbdf9ebca" />
-<img width="528" height="552" alt="Screenshot 2026-10-28 134109" src="https://github.com/user-attachments/assets/b1fa14c2-dd9d-4327-a2a7-201de0706106" />
-<img width="497" height="552" alt="Screenshot 2026-10-28 134115" src="https://github.com/user-attachments/assets/1b2eb7e7-efda-4771-b01b-cd0ecfa0abc9" />
-<img width="485" height="557" alt="Screenshot 2026-10-28 134122" src="https://github.com/user-attachments/assets/fe4b4f26-e250-42ee-a7c5-1626b1807c6a" />
-<img width="516" height="555" alt="Screenshot 2026-10-28 134127" src="https://github.com/user-attachments/assets/9484b390-51e6-4125-91d1-e685a002c02a" />
+<img width="596" height="788" alt="image" src="https://github.com/user-attachments/assets/a4869392-4c37-4830-a1b7-59329ba56fdd" />
 
-
-### Outlier Detection and Removal Using IQR
 ```
-import pandas as pd
-import matplotlib.pyplot as plt
+df = pd.read_csv("SAMPLEIDS.csv")
 
-age = [1, 3, 28, 27, 25, 92, 30, 39, 40, 50, 26, 24, 29, 94]
-af = pd.DataFrame(age, columns=["Age"])
+print(df.head())
+print("Missing values:\n", df.isnull().sum())
+print("Duplicate rows:", df.duplicated().sum())
 
-af.boxplot(column="Age")
-plt.title("Boxplot Before IQR Outlier Removal")
-plt.show()
+df = df.drop_duplicates()
 
-Q1 = af["Age"].quantile(0.25)
-Q3 = af["Age"].quantile(0.75)
-IQR = Q3 - Q1
+# Inspect categorical inconsistencies
+for col in df.select_dtypes(include=["object", "string"]).columns:
+    print(f"\n{col}:", df[col].value_counts(dropna=False))
 
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
+# Standardize text
+for col in df.select_dtypes(include=["object", "string"]).columns:
+    df[col] = df[col].str.strip().str.upper()
 
-print("Outlier values:")
-print(af[(af["Age"] < lower_bound) | (af["Age"] > upper_bound)])
+# Fill missing values
+for col in df.select_dtypes(include="number").columns:
+    df[col] = df[col].fillna(df[col].median())
 
-af_clean = af[
-    (af["Age"] >= lower_bound) & (af["Age"] <= upper_bound)
-]
-print("Data after removing outliers:")
-print(af_clean)
+for col in df.select_dtypes(include=["object", "string"]).columns:
+    if df[col].isnull().any() and not df[col].mode().empty:
+        df[col] = df[col].fillna(df[col].mode()[0])
 
-af_clean.boxplot(column="Age")
-plt.title("Boxplot After IQR Outlier Removal")
-plt.show()
+print("\nRemaining missing values:\n", df.isnull().sum())
+df.to_csv("cleaned_SAMPLEIDS.csv", index=False)
+print("Saved successfully!")
 ```
-# Output
-<img width="545" height="397" alt="Screenshot 2026-10-28 134331" src="https://github.com/user-attachments/assets/bad96181-9be0-4808-a105-f6c03a1ff700" />
-<img width="912" height="365" alt="Screenshot 2026-10-28 134403" src="https://github.com/user-attachments/assets/757f3954-f12f-4ab2-aa8d-c72aa267985e" />
-<img width="668" height="742" alt="Screenshot 2026-10-28 134409" src="https://github.com/user-attachments/assets/678b55e5-37a1-45c6-91bc-80f97048de57" />
-<img width="588" height="556" alt="Screenshot 2026-10-28 134416" src="https://github.com/user-attachments/assets/ff6c3d41-4011-4a60-a3c3-21e7ce3b4d8b" />
-<img width="853" height="363" alt="Screenshot 2026-10-28 134445" src="https://github.com/user-attachments/assets/f00f4f9c-b953-4d29-91f9-d7cca8277b72" />
+<img width="597" height="786" alt="image" src="https://github.com/user-attachments/assets/f1762e28-72e6-4361-9999-4151878a866b" />
+<img width="595" height="481" alt="image" src="https://github.com/user-attachments/assets/8228d5d3-26c9-4a88-9e7a-ed14202a7506" />
 
-### Outlier Detection and Removal Using Z-Score
-```
-import pandas as pd
-import matplotlib.pyplot as plt
-from scipy import stats
 
-data = [
-    1, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54,
-    57, 60, 63, 66, 69, 72, 75, 78, 81, 84, 87, 90, 93, 96, 99, 158
-]
+# Summary
+In this experiment, the Pandas library was used to clean two datasets, Data_set.csv and SAMPLEIDS.csv. The datasets were loaded using read_csv(), and head() and info() were used to inspect the data. Missing values were identified using isnull().sum(). Numerical missing values were filled with the median, while categorical missing values were filled with the mode. Duplicate records were removed from SAMPLEIDS.csv using drop_duplicates(), and text values were standardized by removing extra spaces and converting them to uppercase. Finally, the cleaned datasets were saved as CSV files using to_csv().
+1. Data_set.csv
+The dataset was checked for missing values using Pandas. Numerical missing values were filled with the median and categorical missing values with the mode. The cleaned data was saved as cleaned_Data_set.csv.
 
-zdf = pd.DataFrame(data, columns=["Value"])
+2. SAMPLEIDS.csv
+Duplicate records and missing values were checked. Text values were standardized by removing extra spaces and converting them to uppercase. Missing values were filled using the median or mode, and the result was saved as cleaned_SAMPLEIDS.csv.
 
-zdf.boxplot(column="Value")
-plt.title("Boxplot Before Z-Score Outlier Removal")
-plt.show()
 
-z_scores = stats.zscore(zdf["Value"])
-
-print("Outlier values:")
-print(zdf[abs(z_scores) > 3])
-
-zdf_clean = zdf[abs(z_scores) <= 3]
-print("Data after removing outliers:")
-print(zdf_clean)
-
-zdf_clean.boxplot(column="Value")
-plt.title("Boxplot After Z-Score Outlier Removal")
-plt.show()
-```
-# Output
-<img width="448" height="447" alt="Screenshot 2026-10-28 134601" src="https://github.com/user-attachments/assets/d8da35d3-c7b9-443f-9065-50f6ecfa1357" />
-<img width="817" height="362" alt="Screenshot 2026-10-28 134607" src="https://github.com/user-attachments/assets/0e83ba1b-6e91-4218-b225-2e818c087977" />
 
 # Result
-Thus the data cleaning process on the given dataset is executed successfully.
+Thus the given data successfully performed data cleaning and saved the cleaned data to a file.
