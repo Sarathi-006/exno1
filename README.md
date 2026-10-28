@@ -81,14 +81,11 @@ print("Saved successfully!")
 
 
 # Summary
-In this experiment, the Pandas library was used to clean two datasets, Data_set.csv and SAMPLEIDS.csv. The datasets were loaded using read_csv(), and head() and info() were used to inspect the data. Missing values were identified using isnull().sum(). Numerical missing values were filled with the median, while categorical missing values were filled with the mode. Duplicate records were removed from SAMPLEIDS.csv using drop_duplicates(), and text values were standardized by removing extra spaces and converting them to uppercase. Finally, the cleaned datasets were saved as CSV files using to_csv().
-1. Data_set.csv
-The dataset was checked for missing values using Pandas. Numerical missing values were filled with the median and categorical missing values with the mode. The cleaned data was saved as cleaned_Data_set.csv.
+The given Python code performs data cleaning on two datasets, Data_set.csv and SAMPLEIDS.csv, using the Pandas library. First, it loads the datasets and examines the first few rows, data types, missing values, and duplicate records.
 
-2. SAMPLEIDS.csv
-Duplicate records and missing values were checked. Text values were standardized by removing extra spaces and converting them to uppercase. Missing values were filled using the median or mode, and the result was saved as cleaned_SAMPLEIDS.csv.
+For Data_set.csv, missing numerical values are replaced with the median, while missing categorical values are filled with the mode. The cleaned dataset is saved as cleaned_Data_set.csv.
 
-
+For SAMPLEIDS.csv, duplicate rows are removed, categorical values are inspected and standardized by removing extra spaces and converting text to uppercase. Missing numerical and categorical values are then filled using the median and mode, respectively. Finally, the cleaned dataset is saved as cleaned_SAMPLEIDS.csv.
 
 # Result
 Thus the given data successfully performed data cleaning and saved the cleaned data to a file.
